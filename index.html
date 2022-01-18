@@ -17,25 +17,33 @@
       href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <link rel="stylesheet" href="src/styles.css" />
   </head>
   <body>
     <div class="container">
       <div class="weather-app">
-        <h1>Bangalore</h1>
+        <h1 id="city"></h1>
         <h2>
           Thursday, January 13th
           <br />
           20:56
         </h2>
         <h3>
-          <span class="temp">7º</span> <br />
-          clouds
+          <div class="temp"><span id="temp"></span>º</div>
+          <br />
+          <span id="description"></span>
         </h3>
-        <h4>3º | 9º</h4>
+        <h4><span id="max"></span>º | <span id="min"></span>º</h4>
         <h5>
-          Humidity 75% Wind Speed 2m/s
-          <button class="farenheit-button">ºF</button>
+          <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+              <div class="humidity">Humidity <span id="humidity"></span>%</div>
+              <div>Wind Speed <span id="wind"></span>m/s</div>
+              <button class="farenheit-button">ºF</button>
+            </div>
+          </nav>
         </h5>
         <ul>
           <li>Friday 8 | 11</li>
@@ -46,7 +54,11 @@
         </ul>
       </div>
       <p class="footer">
-        This app is open-coded by Kasia Jura and hosted on Netlify
+        This app is
+        <a href="https://github.com/kasita623/repasito" target="_blank"
+          >open-coded</a
+        >
+        by Kasia Jura and hosted on Netlify
       </p>
     </div>
   </body>

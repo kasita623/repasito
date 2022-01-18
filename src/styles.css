@@ -1,4 +1,8 @@
 body {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  width: 100%;
+  background-size: cover;
+  min-height: 100vh;
   font-family: "Lato", sans-serif;
   font-weight: 300;
 }
@@ -38,14 +42,14 @@ ul {
   background-color: #838e9f;
   border-radius: 8px;
   margin: 0 auto;
-  margin-top: 25px;
+  margin-top: 45px;
   padding-top: 10px;
   padding-bottom: 25px;
   width: 300px;
 }
 
 .temp {
-  font-size: 70px;
+  font-size: 60px;
 }
 .farenheit-button {
   background-color: #587a9a;
@@ -55,6 +59,7 @@ ul {
   font-size: 12px;
   padding: 5px;
   padding-inline: 8px;
+  margin-left: 5px;
 }
 .farenheit-button:hover {
   opacity: 0.9;
@@ -65,4 +70,16 @@ ul {
   font-size: 12px;
   margin-top: 10px;
   text-align: center;
+}
+
+.navbar {
+  background: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
+  border-radius: 4px;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+.humidity {
+  margin-left: 15px;
 }
