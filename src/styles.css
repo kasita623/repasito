@@ -83,3 +83,8 @@ ul {
 .humidity {
   margin-left: 15px;
 }
+
+form {
+  margin-left: 20px;
+  margin-top: 10px;
+}

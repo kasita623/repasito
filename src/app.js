@@ -72,10 +72,21 @@ function displayWeather(response) {
   document.querySelector("#time").innerHTML = formatTime(
     response.data.dt * 1000
   );
-  console.log(response.data.dt);
 }
 
-let apiKey = `940cab7f2dffe0039b455473a663a1f7`;
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=buenos aires&appid=${apiKey}&units=metric`;
+function show(city) {
+  let apiKey = `940cab7f2dffe0039b455473a663a1f7`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayWeather);
+}
 
-axios.get(apiUrl).then(displayWeather);
+function search(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#citycity");
+  show(cityInputElement.value);
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", search);
+
+show("Lima");
