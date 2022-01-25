@@ -24,7 +24,6 @@ function formatDate(timestamp) {
     "Saturday",
   ];
   let months = [
-    "December",
     "January",
     "February",
     "March",
@@ -36,6 +35,7 @@ function formatDate(timestamp) {
     "September",
     "October",
     "November",
+    "December",
   ];
   let weekDay = week[date.getDay()];
   let month = months[date.getMonth()];
@@ -45,6 +45,30 @@ function formatDate(timestamp) {
   }
 
   return `${weekDay}, ${month} ${day}`;
+}
+
+function displayForecast(response) {
+  console.log(response.data.daily);
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = "";
+  let days = [
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+    "Monday",
+  ];
+  days.forEach(function (day) {
+    forecastHTML = forecastHTML + ` <li> ${day} 8 | 11</li>`;
+  });
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coord) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coord.lat}&lon=${coord.lon}&appid=940cab7f2dffe0039b455473a663a1f7&units=metric 
+`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayWeather(response) {
@@ -72,6 +96,7 @@ function displayWeather(response) {
   document.querySelector("#time").innerHTML = formatTime(
     response.data.dt * 1000
   );
+  getForecast(response.data.coord);
 }
 
 function show(city) {
@@ -90,3 +115,4 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);
 
 show("Lima");
+displayForecast();
