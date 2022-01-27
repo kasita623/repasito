@@ -47,20 +47,34 @@ function formatDate(timestamp) {
   return `${weekDay}, ${month} ${day}`;
 }
 
-function displayForecast(response) {
-  console.log(response.data.daily);
-  let forecastElement = document.querySelector("#forecast");
-  let forecastHTML = "";
+function getDay(timestamp) {
+  let date = new Date(timestamp);
   let days = [
+    "Monday",
+    "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
     "Sunday",
-    "Monday",
   ];
-  days.forEach(function (day) {
-    forecastHTML = forecastHTML + ` <li> ${day} 8 | 11</li>`;
+  let day = days[date.getDay()];
+  return day;
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = "";
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        ` <li> ${getDay(forecastDay.dt * 1000)} ${Math.round(
+          forecastDay.temp.max
+        )} | ${Math.round(forecastDay.temp.min)} </li>`;
+    }
   });
   forecastElement.innerHTML = forecastHTML;
 }
