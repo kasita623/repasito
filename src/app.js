@@ -64,6 +64,7 @@ function getDay(timestamp) {
 
 function displayForecast(response) {
   let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = "";
 
@@ -71,9 +72,13 @@ function displayForecast(response) {
     if (index < 5) {
       forecastHTML =
         forecastHTML +
-        ` <li> ${getDay(forecastDay.dt * 1000)} ${Math.round(
-          forecastDay.temp.max
-        )} | ${Math.round(forecastDay.temp.min)} </li>`;
+        ` <li> <img src="https://openweathermap.org/img/wn/${
+          forecastDay.weather[0].icon
+        }@2x.png" width="20"/> ${getDay(
+          forecastDay.dt * 1000
+        )} <strong>${Math.round(forecastDay.temp.max)} | ${Math.round(
+          forecastDay.temp.min
+        )}</strong></li>`;
     }
   });
   forecastElement.innerHTML = forecastHTML;
@@ -110,6 +115,11 @@ function displayWeather(response) {
   document.querySelector("#time").innerHTML = formatTime(
     response.data.dt * 1000
   );
+  let icon = response.data.weather[0].icon;
+  document
+    .querySelector("#icon")
+    .setAttribute("src", `https://openweathermap.org/img/wn/${icon}@2x.png`);
+
   getForecast(response.data.coord);
 }
 
@@ -129,4 +139,3 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);
 
 show("Lima");
-displayForecast();
